@@ -6,7 +6,8 @@
 
 class Account
 {
-	float accountNum;
+	static int accountNumGenerator;
+	int accountID;
 	float interestRate;
 	float balance;
 
@@ -14,12 +15,24 @@ public:
 	Account();
 	void withdraws();
 	void deposits();
+	int getAccountID();
 
 		
 	virtual void display() {};
 		
 };
 
+int Account::accountNumGenerator = 1;
+
+Account::Account()
+{
+	accountID = accountNumGenerator ++;
+}
+
+int Account::getAccountID()
+{
+	return accountID;
+}
 class Savings: public Account
 {
 	
@@ -36,6 +49,8 @@ class CertificateofDeposit : public Account
 {
 	
 };
+
+
 int main()
 {
     return 0;
