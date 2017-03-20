@@ -5,7 +5,9 @@
 #include <iostream>
 using namespace std;
 
-class Account
+
+//bank Accouint generic class
+class bankAccount
 {
 	static int accountNumGenerator;
 	int accountID;
@@ -13,44 +15,68 @@ class Account
 	float balance;
 
 public:
-	Account();
-	void withdraws();
-	void deposits();
-	int getAccountID();
-
-		
-	virtual void display() {};
+	bankAccount();
+	void withdraw(float amount);
+	void deposit(float amount);
+	int getAccountID();	
+	void displayAccount(int, float);
+	float getBalance();
 		
 };
 
-int Account::accountNumGenerator = 1;
+int bankAccount::accountNumGenerator = 1;
 
-Account::Account()
+bankAccount::bankAccount()
 {
 	accountID = accountNumGenerator ++;
 }
 
-int Account::getAccountID()
+int bankAccount::getAccountID()
 {
 	return accountID;
 }
 
-//Savings Class with Inheritance from account
-class Savings: public Account
+void bankAccount::deposit(float amount)
 {
-	
+	balance = balance + amount;
+}
+
+void bankAccount::withdraw(float amount)
+{
+	balance = balance - amount;
+}
+
+float bankAccount::getBalance()
+{
+	return balance;
+}
+
+
+
+
+
+//Savings Class with Inheritance from account
+class Savings: public bankAccount
+{
+	private: 
+		int accountID;
+		float interestRate;
+		float balance;
+public:
+	void calculateIntrest(float, float);
+	savingsAccount(int, float, float);
 
 
 };
 
 //Checcking Class with Inheritance from account
-class Checking : public Account
+class Checking : public bankAccount
 {
 	
 };
 
 //CD Class with Inheritance from account
-class CertificateofDeposit : public Account
+class CertificateofDeposit : public bankAccount
 {
 	
 };
