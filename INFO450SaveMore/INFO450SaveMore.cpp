@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include <iostream>
+using namespace std;
 
 class Account
 {
@@ -33,6 +34,8 @@ int Account::getAccountID()
 {
 	return accountID;
 }
+
+//Savings Class with Inheritance from account
 class Savings: public Account
 {
 	
@@ -40,11 +43,13 @@ class Savings: public Account
 
 };
 
+//Checcking Class with Inheritance from account
 class Checking : public Account
 {
 	
 };
 
+//CD Class with Inheritance from account
 class CertificateofDeposit : public Account
 {
 	
