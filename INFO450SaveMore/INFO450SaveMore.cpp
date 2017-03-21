@@ -62,7 +62,7 @@ class savingsAccount: public bankAccount
 		float balance;
 public:
 	
-		 savingsAccount(int, float, float);
+		 savingsAccount();
 		 void calculateIntrest(float, float);
 		 void deposit(float amount);
 		 void withdraw(float amount);
@@ -82,7 +82,7 @@ void savingsAccount::withdraw(float amount)
 	balance = (balance -2) - amount;
 }
 
-
+//Savings account method to calculate interest
 void savingsAccount::calculateIntrest(float, float)
 {
 	if (balance <= 10000)
