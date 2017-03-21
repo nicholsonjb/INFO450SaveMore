@@ -144,10 +144,36 @@ public:
 	void Display();
 };
 
+//Display savings
+void savingsAccount::Display()
+{
+	cout << "Account Number: " << accountNumber << endl;
+	cout << "Interest Rate: " << interestRate << endl;
+	cout << "Savings Account Bal: " << balance << endl;
+
+}
+
+//Display checking
+void checkingAccount::Display()
+{
+	cout << "Account Number: " << accountNumber << endl;
+	cout << "Interest Rate: " << interestRate << endl;
+	cout << "Checking Account Bal: " << balance << endl;
+}
+
+//Display CD
+void certificateofDeposit::Display()
+{
+	cout << "Account Number: " << accountNumber << endl;
+	cout << "Interest Rate: " << interestRate << endl;
+	cout << "CD Account Bal: " << balance << endl;
+}
 
 
 int main()
 {
+	bankAccount mySavings
+
     return 0;
 }
 
