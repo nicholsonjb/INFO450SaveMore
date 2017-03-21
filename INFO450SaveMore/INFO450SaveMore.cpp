@@ -53,9 +53,6 @@ float bankAccount::getBalance()
 }
 
 
-
-
-
 //Savings Class with Inheritance from account
 class savingsAccount: public bankAccount
 {
@@ -71,41 +68,40 @@ public:
 		 void withdraw(float amount);
 		 float getBalance();
 
-
-
 };
 
-
+//Savings accouunt method deposit
 void savingsAccount::deposit(float amount)
 {
 	balance = balance + amount;
 }
 
-
+//Savings accouunt method withdraw with 2 dollar withdraw fee
 void savingsAccount::withdraw(float amount)
 {
-	balance = balance - amount;
+	balance = (balance -2) - amount;
 }
 
-float savingsAccount::getBalance()
-{
-	return balance;
-}
 
 void savingsAccount::calculateIntrest(float, float)
 {
 	if (balance <= 10000)
 	{
-		interestRate = .01;
-		balance = balance + (balance*(interestRate/MAXMONTHS));
+		interestRate = .01/MAXMONTHS;
+		balance = balance + balance*interestRate;
 
 	}
 	 if (balance >= 10000)
 	 {
-		 interestRate = .02;
-		 balance = balance + (balance*(interestRate / MAXMONTHS));
+		 interestRate = .02/MAXMONTHS;
+		 balance = balance + balance*interestRate;
 	 }
 
+}
+
+float savingsAccount::getBalance()
+{
+	return balance;
 }
 
 
