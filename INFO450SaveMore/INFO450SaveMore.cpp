@@ -56,7 +56,7 @@ float bankAccount::getBalance()
 
 
 //Savings Class with Inheritance from account
-class Savings: public bankAccount
+class savingsAccount: public bankAccount
 {
 	private: 
 		int accountID;
@@ -64,10 +64,46 @@ class Savings: public bankAccount
 		float balance;
 public:
 	void calculateIntrest(float, float);
-	savingsAccount(int, float, float);
+		 savingsAccount(int, float, float);
+		 void deposit(float amount);
+		 void withdraw(float amount);
+		 float getBalance();
+
 
 
 };
+
+
+void savingsAccount::deposit(float amount)
+{
+	balance = balance + amount;
+}
+
+
+void savingsAccount::withdraw(float amount)
+{
+	balance = balance - amount;
+}
+
+float savingsAccount::getBalance()
+{
+	return balance;
+}
+
+void savingsAccount::calculateIntrest(float, float)
+{
+	if (balance <= 10000)
+	{
+		interestRate = .01;
+
+	}
+	 if (balance >= 10000)
+	 {
+		 interestRate = .02;
+	 }
+
+}
+
 
 //Checcking Class with Inheritance from account
 class Checking : public bankAccount
