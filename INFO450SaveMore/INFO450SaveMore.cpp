@@ -4,7 +4,8 @@
 #include "stdafx.h"
 #include <iostream>
 using namespace std;
-
+ 
+const int MAXMONTHS = 12;
 
 //bank Accouint generic class
 class bankAccount
@@ -96,13 +97,13 @@ void savingsAccount::calculateIntrest(float, float)
 	if (balance <= 10000)
 	{
 		interestRate = .01;
-		balance = balance + balance*interestRate;
+		balance = balance + (balance*(interestRate/MAXMONTHS));
 
 	}
 	 if (balance >= 10000)
 	 {
 		 interestRate = .02;
-		 balance = balance + balance*interestRate;
+		 balance = balance + (balance*(interestRate / MAXMONTHS));
 	 }
 
 }
