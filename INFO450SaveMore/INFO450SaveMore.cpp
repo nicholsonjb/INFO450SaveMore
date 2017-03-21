@@ -58,6 +58,7 @@ class savingsAccount: public bankAccount
 {
 	private: 
 		int accountID;
+		int accountNum;
 		float interestRate;
 		float balance;
 public:
@@ -103,6 +104,10 @@ float savingsAccount::getBalance()
 {
 	return balance;
 }
+ savingsAccount::savingsAccount()
+ {
+	 accountID = accountNum;
+ }
 
 
 //Checcking Class with Inheritance from account
