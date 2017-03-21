@@ -59,25 +59,91 @@ public:
 	{
 		balance = ((balance - 2) - amount);
 	}
+
+	void deposit(float amount)
+	{
+		balance = balance + amount;
+	}
+	
+	float getBalance()
+	{
+		return balance;
+	};
 	void Display();
-	void getBalance();
 };
-
-
-
 
 
 //Checcking Class with Inheritance from account
-class Checking : public bankAccount
+class checkingAccount : public bankAccount
 {
+	int order = 15;
 	
+
+public:
+	checkingAccount(int a, float i, float b, int o) : bankAccount(a, i, b)
+	{
+		if (balance <= 500)
+		{
+			balance = balance - 5;
+
+		}
+	}
+	
+	void orderChecks(int order)
+	{
+		 balance = balance - order;
+	}
+	void withdraw(float amount)
+	{
+		balance = ((balance - 2) - amount);
+	}
+	
+	float getBalance()
+	{
+		return balance;
+	};
+
+	void Display();
 };
 
 //CD Class with Inheritance from account
-class CertificateofDeposit : public bankAccount
+class certificateofDeposit : public bankAccount
 {
-	
+	int term;
+public:
+	certificateofDeposit(int a, float i, float b, int t) : bankAccount(a, i, b)
+	{
+		if (term > 5)
+		{
+			interestRate = .1 / MAXMONTHS;
+			balance = balance + balance*interestRate;
+
+		}
+		if (balance < 5)
+		{
+			interestRate = .05 / MAXMONTHS;
+			balance = balance + balance*interestRate;
+		}
+	}
+	//CD class withdraw with 10% fee
+	void withdraw(float amount)
+	{
+		balance = balance - ((balance- amount) * .1);
+		
+	}
+
+	void deposit(float amount)
+	{
+		balance = balance + amount;
+	}
+
+	float getBalance()
+	{
+		return balance;
+	};
+	void Display();
 };
+
 
 
 int main()
