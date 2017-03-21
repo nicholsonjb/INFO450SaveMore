@@ -10,104 +10,61 @@ const int MAXMONTHS = 12;
 //bank Accouint generic class
 class bankAccount
 {
-	static int accountNumGenerator;
-	int accountID;
+protected:
+	int accountNumber;
 	float interestRate;
 	float balance;
 
 public:
-	bankAccount();
-	void withdraw(float amount);
-	void deposit(float amount);
-	int getAccountID();	
-	void displayAccount(int, float);
-	float getBalance();
+	bankAccount(int a, float i, float b)
+	{
+		accountNumber = a; interestRate = i; balance = b;
+	}
+	void withdraw(float amount)
+	{
+		balance = balance - amount;
+	}
+	void deposit(float amount)
+	{
+		balance = balance + amount;
+	}
+	virtual float getBalance() = 0;
+	virtual void Display() = 0;
 		
 };
 
-int bankAccount::accountNumGenerator = 1;
 
-bankAccount::bankAccount()
-{
-	accountID = accountNumGenerator ++;
-}
-
-int bankAccount::getAccountID()
-{
-	return accountID;
-}
-
-void bankAccount::deposit(float amount)
-{
-	balance = balance + amount;
-}
-
-void bankAccount::withdraw(float amount)
-{
-	balance = balance - amount;
-}
-
-float bankAccount::getBalance()
-{
-	return balance;
-}
 
 
 //Savings Class with Inheritance from account
-class savingsAccount: public bankAccount
+class savingsAccount : public bankAccount
 {
-	private: 
-		int accountID;
-		int accountNum;
-		float interestRate;
-		float balance;
 public:
-	
-		 savingsAccount();
-		 void calculateIntrest(float, float);
-		 void deposit(float amount);
-		 void withdraw(float amount);
-		 float getBalance();
+	savingsAccount(int a, float i, float b) : bankAccount(a,i,b)
+	{
+		if (balance <= 10000)
+		{
+			interestRate = .01 / MAXMONTHS;
+			balance = balance + balance*interestRate;
 
+		}
+		if (balance >= 10000)
+		{
+			interestRate = .02 / MAXMONTHS;
+			balance = balance + balance*interestRate;
+		}
+	}
+
+	void withdraw(float amount)
+	{
+		balance = ((balance - 2) - amount);
+	}
+	void Display();
+	void getBalance();
 };
 
-//Savings accouunt method deposit
-void savingsAccount::deposit(float amount)
-{
-	balance = balance + amount;
-}
 
-//Savings accouunt method withdraw with 2 dollar withdraw fee
-void savingsAccount::withdraw(float amount)
-{
-	balance = (balance -2) - amount;
-}
 
-//Savings account method to calculate interest
-void savingsAccount::calculateIntrest(float, float)
-{
-	if (balance <= 10000)
-	{
-		interestRate = .01/MAXMONTHS;
-		balance = balance + balance*interestRate;
-
-	}
-	 if (balance >= 10000)
-	 {
-		 interestRate = .02/MAXMONTHS;
-		 balance = balance + balance*interestRate;
-	 }
-
-}
-
-float savingsAccount::getBalance()
-{
-	return balance;
-}
- savingsAccount::savingsAccount()
- {
-	 accountID = accountNum;
- }
 
 
 //Checcking Class with Inheritance from account
