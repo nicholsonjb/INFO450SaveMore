@@ -63,8 +63,9 @@ class savingsAccount: public bankAccount
 		float interestRate;
 		float balance;
 public:
-	void calculateIntrest(float, float);
+	
 		 savingsAccount(int, float, float);
+		 void calculateIntrest(float, float);
 		 void deposit(float amount);
 		 void withdraw(float amount);
 		 float getBalance();
@@ -95,11 +96,13 @@ void savingsAccount::calculateIntrest(float, float)
 	if (balance <= 10000)
 	{
 		interestRate = .01;
+		balance = balance + balance*interestRate;
 
 	}
 	 if (balance >= 10000)
 	 {
 		 interestRate = .02;
+		 balance = balance + balance*interestRate;
 	 }
 
 }
