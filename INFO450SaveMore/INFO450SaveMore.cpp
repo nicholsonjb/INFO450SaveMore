@@ -80,7 +80,7 @@ public:
 
 	void Display()
 	{
-		cout << "Account Number: " << accountNumber << endl;
+		cout << "Savings Account Number: " << accountNumber << endl;
 		cout << "Depo Amount: " << amount << endl;
 		/*cout << "Interest Rate: " << interestRate << endl;*/
 		cout << "Savings Account Bal: " << balance << endl;
@@ -121,7 +121,7 @@ public:
 
 	void Display()
 	{
-		cout << "Account Number: " << accountNumber << endl;
+		cout << "\n Checking Account Number: " << accountNumber << endl;
 		cout << "Interest Rate: " << interestRate << endl;
 		cout << "Checking Account Bal: " << balance << endl;
 	}
@@ -164,7 +164,7 @@ public:
 
 	void Display()
 	{
-		cout << "Account Number: " << accountNumber << endl;
+		cout << "\n CD Account Number: " << accountNumber << endl;
 		cout << "Interest Rate: " << interestRate << endl;
 		cout << "CD Account Bal: " << balance << endl;
 	}
@@ -178,9 +178,21 @@ int main()
 		bankAccount **acc = new bankAccount*[nBankAccounts];
 		acc[0] = new savingsAccount(100, 0,10000,10000);
 		acc[0]->Display();
+		
+		acc[1] = new checkingAccount(200, 0, 600, 600,0);
+		acc[1]->Display();
+
+		acc[2] = new certificateofDeposit(300, 0, 10000, 10000, 3);
+		acc[2]->Display();
+
+
 
 		delete acc[0];
+		delete acc[1];
+		delete acc[2];
+		delete[] acc;
 
 	return 0;
 }
 
+ 
