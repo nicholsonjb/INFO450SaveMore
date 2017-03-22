@@ -168,6 +168,14 @@ public:
 
 int main()
 {
+	int nBankAccounts = 10;
+
+		bankAccount **acc = new bankAccount*[nBankAccounts];
+		acc[0] = new savingsAccount(100, .01, 10000);
+		acc[0]->Display();
+
+		delete acc[0];
+
 	return 0;
 }
 
