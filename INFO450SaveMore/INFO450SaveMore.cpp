@@ -29,7 +29,7 @@ public:
 		balance = balance + amount;
 	}
 	virtual float getBalance() = 0;
-	virtual void Display() = 0;
+	virtual void Display() {};
 		
 };
 
@@ -69,7 +69,12 @@ public:
 	{
 		return balance;
 	};
-	void Display();
+	void Display()
+	{
+		cout << "Account Number: " << accountNumber << endl;
+		cout << "Interest Rate: " << interestRate << endl;
+		cout << "Savings Account Bal: " << balance << endl;
+	}
 };
 
 
@@ -103,7 +108,12 @@ public:
 		return balance;
 	};
 
-	void Display();
+	void Display()
+	{
+		cout << "Account Number: " << accountNumber << endl;
+		cout << "Interest Rate: " << interestRate << endl;
+		cout << "Checking Account Bal: " << balance << endl;
+	}
 };
 
 //CD Class with Inheritance from account
@@ -141,38 +151,19 @@ public:
 	{
 		return balance;
 	};
-	void Display();
+	void Display()
+	{
+		cout << "Account Number: " << accountNumber << endl;
+		cout << "Interest Rate: " << interestRate << endl;
+		cout << "CD Account Bal: " << balance << endl;
+	}
 };
 
-//Display savings
-void savingsAccount::Display()
-{
-	cout << "Account Number: " << accountNumber << endl;
-	cout << "Interest Rate: " << interestRate << endl;
-	cout << "Savings Account Bal: " << balance << endl;
 
-}
-
-//Display checking
-void checkingAccount::Display()
-{
-	cout << "Account Number: " << accountNumber << endl;
-	cout << "Interest Rate: " << interestRate << endl;
-	cout << "Checking Account Bal: " << balance << endl;
-}
-
-//Display CD
-void certificateofDeposit::Display()
-{
-	cout << "Account Number: " << accountNumber << endl;
-	cout << "Interest Rate: " << interestRate << endl;
-	cout << "CD Account Bal: " << balance << endl;
-}
 
 
 int main()
 {
-	bankAccount mySavings
 
     return 0;
 }
