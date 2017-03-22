@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include <iostream>
 using namespace std;
- 
+
 const int MAXMONTHS = 12;
 
 //bank Accouint generic class
@@ -18,40 +18,44 @@ protected:
 public:
 	bankAccount(int a, float i, float b)
 	{
-		accountNumber = a; interestRate = i; balance = b;
+		accountNumber = a;
+		interestRate = i;
+		balance = b;
 	}
+
 	void withdraw(float amount)
 	{
 		balance = balance - amount;
 	}
+
 	void deposit(float amount)
 	{
 		balance = balance + amount;
 	}
+
 	virtual float getBalance() = 0;
-	virtual void Display() {};
-		
+
+	virtual void Display()
+	{
+	};
 };
-
-
 
 
 //Savings Class with Inheritance from account
 class savingsAccount : public bankAccount
 {
 public:
-	savingsAccount(int a, float i, float b) : bankAccount(a,i,b)
+	savingsAccount(int a, float i, float b) : bankAccount(a, i, b)
 	{
 		if (balance <= 10000)
 		{
 			interestRate = .01 / MAXMONTHS;
-			balance = balance + balance*interestRate;
-
+			balance = balance + balance * interestRate;
 		}
 		if (balance >= 10000)
 		{
 			interestRate = .02 / MAXMONTHS;
-			balance = balance + balance*interestRate;
+			balance = balance + balance * interestRate;
 		}
 	}
 
@@ -64,11 +68,12 @@ public:
 	{
 		balance = balance + amount;
 	}
-	
+
 	float getBalance()
 	{
 		return balance;
 	};
+
 	void Display()
 	{
 		cout << "Account Number: " << accountNumber << endl;
@@ -82,7 +87,7 @@ public:
 class checkingAccount : public bankAccount
 {
 	int order = 15;
-	
+
 
 public:
 	checkingAccount(int a, float i, float b, int o) : bankAccount(a, i, b)
@@ -90,19 +95,20 @@ public:
 		if (balance <= 500)
 		{
 			balance = balance - 5;
-
 		}
 	}
-	
+
+	//Method order checks
 	void orderChecks(int order)
 	{
-		 balance = balance - order;
+		balance = balance - order;
 	}
+
 	void withdraw(float amount)
 	{
 		balance = ((balance - 2) - amount);
 	}
-	
+
 	float getBalance()
 	{
 		return balance;
@@ -126,20 +132,19 @@ public:
 		if (term > 5)
 		{
 			interestRate = .1 / MAXMONTHS;
-			balance = balance + balance*interestRate;
-
+			balance = balance + balance * interestRate;
 		}
 		if (balance < 5)
 		{
 			interestRate = .05 / MAXMONTHS;
-			balance = balance + balance*interestRate;
+			balance = balance + balance * interestRate;
 		}
 	}
-	//CD class withdraw with 10% fee
+
+	// Method withdraw 10% fee
 	void withdraw(float amount)
 	{
-		balance = balance - ((balance- amount) * .1);
-		
+		balance = balance - ((balance - amount) * .1);
 	}
 
 	void deposit(float amount)
@@ -151,6 +156,7 @@ public:
 	{
 		return balance;
 	};
+
 	void Display()
 	{
 		cout << "Account Number: " << accountNumber << endl;
@@ -160,11 +166,8 @@ public:
 };
 
 
-
-
 int main()
 {
-
-    return 0;
+	return 0;
 }
 
