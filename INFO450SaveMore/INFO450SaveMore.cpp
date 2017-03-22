@@ -25,12 +25,14 @@ public:
 		balance = b;
 	}
 
-	void withdraw(float amount)
+//Method Bank Account withdraw
+	void withdraw()
 	{
 		balance = balance - amount;
 	}
 
-	void deposit(float amount)
+	//Method Bank Account Deposit
+	void deposit(float)
 	{
 		balance = balance + amount;
 	}
@@ -50,7 +52,7 @@ public:
 	savingsAccount(int a, float i, float b, float amt) : bankAccount(a, i, b, amt)
 	{
 	
-		
+		//Caculate intreset rates savings
 		if (balance <= 10000)
 		{
 			interestRate = .01 / MAXMONTHS;
@@ -62,22 +64,25 @@ public:
 			balance = balance + balance * interestRate;
 		}
 	}
-
+	//Method Savings Accouunt withdraw
 	void withdraw()
 	{
 		balance = ((balance - 2) - amount);
 	}
 
+	//Method Savings Account Deposit
 	void deposit()
 	{
 		balance = balance + amount;
 	}
 
+	//Get Balance for Savings
 	float getBalance()
 	{
 		return balance;
 	};
 
+	//Display Savings Account
 	void Display()
 	{
 		cout << "Savings Account Number: " << accountNumber << endl;
@@ -95,8 +100,10 @@ class checkingAccount : public bankAccount
 
 
 public:
+
 	checkingAccount(int a, float i, float b, float amt, int o) : bankAccount(a, i, b, amt)
 	{
+		//If Checking account Balance below 500
 		if (balance <= 500)
 		{
 			balance = balance - 5;
@@ -104,24 +111,27 @@ public:
 	}
 
 	//Method order checks
-	void orderChecks(int order)
+	void orderChecks()
 	{
 		balance = balance - order;
 	}
-
+	
+	//Method Checking Account Withdraw
 	void withdraw(float amount)
 	{
 		balance = ((balance - 2) - amount);
 	}
 
+	//Get Balance for Checking
 	float getBalance()
 	{
 		return balance;
 	};
 
+	//Display Checking Account Information
 	void Display()
 	{
-		cout << "\n Checking Account Number: " << accountNumber << endl;
+		cout << "\nChecking Account Number: " << accountNumber << endl;
 		cout << "Interest Rate: " << interestRate << endl;
 		cout << "Checking Account Bal: " << balance << endl;
 	}
@@ -134,6 +144,8 @@ class certificateofDeposit : public bankAccount
 public:
 	certificateofDeposit(int a, float i, float b, float amt, int t) : bankAccount(a, i, b, amt)
 	{
+
+		//If CD term <5 or CD term < 5 years 
 		if (term > 5)
 		{
 			interestRate = .1 / MAXMONTHS;
@@ -147,24 +159,25 @@ public:
 	}
 
 	// Method withdraw 10% fee
-	void withdraw(float amount)
+	void withdraw()
 	{
 		balance = balance - ((balance - amount) * .1);
 	}
-
-	void deposit(float amount)
+	//Method CD Deposit
+	void deposit()
 	{
 		balance = balance + amount;
 	}
-
+	
+	//Method CD Get Balance
 	float getBalance()
 	{
 		return balance;
 	};
-
+	//Display CD Information
 	void Display()
 	{
-		cout << "\n CD Account Number: " << accountNumber << endl;
+		cout << "\nCD Account Number: " << accountNumber << endl;
 		cout << "Interest Rate: " << interestRate << endl;
 		cout << "CD Account Bal: " << balance << endl;
 	}
@@ -174,16 +187,17 @@ public:
 int main()
 {
 	int nBankAccounts = 10;
-
-		bankAccount **acc = new bankAccount*[nBankAccounts];
-		acc[0] = new savingsAccount(100, 0,10000,10000);
-		acc[0]->Display();
+	
 		
-		acc[1] = new checkingAccount(200, 0, 600, 600,0);
-		acc[1]->Display();
+		bankAccount **acc = new bankAccount*[nBankAccounts];
+		acc[0] = new savingsAccount(100, 0,10000,10000); //Open Savings
+		acc[0]->Display();									//Display Savings
+		
+		acc[1] = new checkingAccount(200, 0, 600, 600,0); //Open Checking
+		acc[1]->Display();								//Display Checking
 
-		acc[2] = new certificateofDeposit(300, 0, 10000, 10000, 3);
-		acc[2]->Display();
+		acc[2] = new certificateofDeposit(300, 0, 10000, 10000, 3); //Open CD
+		acc[2]->Display();											//Display CD
 
 
 
