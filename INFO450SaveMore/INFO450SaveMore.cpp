@@ -12,13 +12,15 @@ class bankAccount
 {
 protected:
 	int accountNumber;
+	float amount;
 	float interestRate;
 	float balance;
 
 public:
-	bankAccount(int a, float i, float b)
+	bankAccount(int a, float i, float b, float amt)
 	{
 		accountNumber = a;
+		amount = amt;
 		interestRate = i;
 		balance = b;
 	}
@@ -45,8 +47,10 @@ public:
 class savingsAccount : public bankAccount
 {
 public:
-	savingsAccount(int a, float i, float b) : bankAccount(a, i, b)
+	savingsAccount(int a, float i, float b, float amt) : bankAccount(a, i, b, amt)
 	{
+	
+		
 		if (balance <= 10000)
 		{
 			interestRate = .01 / MAXMONTHS;
@@ -59,12 +63,12 @@ public:
 		}
 	}
 
-	void withdraw(float amount)
+	void withdraw()
 	{
 		balance = ((balance - 2) - amount);
 	}
 
-	void deposit(float amount)
+	void deposit()
 	{
 		balance = balance + amount;
 	}
@@ -77,7 +81,8 @@ public:
 	void Display()
 	{
 		cout << "Account Number: " << accountNumber << endl;
-		cout << "Interest Rate: " << interestRate << endl;
+		cout << "Depo Amount: " << amount << endl;
+		/*cout << "Interest Rate: " << interestRate << endl;*/
 		cout << "Savings Account Bal: " << balance << endl;
 	}
 };
@@ -90,7 +95,7 @@ class checkingAccount : public bankAccount
 
 
 public:
-	checkingAccount(int a, float i, float b, int o) : bankAccount(a, i, b)
+	checkingAccount(int a, float i, float b, float amt, int o) : bankAccount(a, i, b, amt)
 	{
 		if (balance <= 500)
 		{
@@ -127,7 +132,7 @@ class certificateofDeposit : public bankAccount
 {
 	int term;
 public:
-	certificateofDeposit(int a, float i, float b, int t) : bankAccount(a, i, b)
+	certificateofDeposit(int a, float i, float b, float amt, int t) : bankAccount(a, i, b, amt)
 	{
 		if (term > 5)
 		{
@@ -171,7 +176,7 @@ int main()
 	int nBankAccounts = 10;
 
 		bankAccount **acc = new bankAccount*[nBankAccounts];
-		acc[0] = new savingsAccount(100, .01, 10000);
+		acc[0] = new savingsAccount(100, 0,10000,10000);
 		acc[0]->Display();
 
 		delete acc[0];
