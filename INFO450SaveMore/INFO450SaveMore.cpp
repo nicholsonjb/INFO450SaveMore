@@ -150,52 +150,68 @@ public:
 
 };
 
-//
-////CD Class with Inheritance from account
-//class certificateofDeposit : public bankAccount
-//{
-//	int term;
-//public:
-//	certificateofDeposit(int a, float i, float b, float amt, int t) : bankAccount(a, i, b, amt)
-//	{
-//
-//		//If CD term <5 or CD term < 5 years 
-//		if (term > 5)
-//		{
-//			interestRate = .1 / MAXMONTHS;
-//			balance = balance + balance * interestRate;
-//		}
-//		if (balance < 5)
-//		{
-//			interestRate = .05 / MAXMONTHS;
-//			balance = balance + balance * interestRate;
-//		}
-//	}
-//
-//	// Method withdraw 10% fee
-//	void withdraw()
-//	{
-//		balance = balance - ((balance - amount) * .1);
-//	}
-//	//Method CD Deposit
-//	void deposit()
-//	{
-//		balance = balance + amount;
-//	}
-//	
-//	//Method CD Get Balance
-//	float getBalance()
-//	{
-//		return balance;
-//	};
-//	//Display CD Information
-//	void Display()
-//	{
-//		cout << "\nCD Account Number: " << accountNumber << endl;
-//		cout << "Interest Rate: " << interestRate << endl;
-//		cout << "CD Account Bal: " << balance << endl;
-//	}
-//};
+
+//CD Class with Inheritance from account
+class certificateofDeposit : public bankAccount
+{
+	int term;
+public:
+	certificateofDeposit(int a, float i, float b) : bankAccount(a, i, b)
+
+	{}
+	//Method Savings Accouunt withdraw
+	int withdraw(float wAmount)
+	{
+		if (balance - wAmount >= 0)
+		{
+			balance = balance  - wAmount;
+			return 0;
+		}
+		if (term >= term )
+		{
+			balance = (balance *(1+.1)) - wAmount;
+		}
+		else
+			return -1;
+	}
+
+	//Method Savings Account Deposit
+	float deposit(float dAmount)
+	{
+
+		balance = balance + dAmount;
+		return balance;
+
+	}
+
+	//Get Balance for Saving
+	float getBalance()
+	{
+		return balance;
+	}
+
+	//monthly intrest for savings
+	float calculateIntrest()
+	{
+		if (term < 5)
+		{
+			balance = balance*pow((1 + .1 / 12), 12);
+			return balance;
+		}
+		if (term > 5)
+		{
+			balance = balance*pow((1 + .5 / 12), 12);
+			return balance;
+		}
+		
+	}
+	//Display Savings Account
+	void Display()
+	{
+		cout << "CD Account Number: " << accountNumber << endl;
+		cout << "CD Account Bal: " << balance << endl;
+	}
+};
 
 
 int main()
