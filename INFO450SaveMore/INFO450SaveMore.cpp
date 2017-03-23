@@ -19,7 +19,6 @@ public:
 	bankAccount(int a, float i, float b)
 	{
 		accountNumber = a;
-		interestRate = i;
 		balance = b;
 	}
 
@@ -27,7 +26,6 @@ public:
 	virtual int withdraw(float wAmount)=0;
 	virtual float deposit(float dAmount) =0;
 	virtual float getBalance() = 0;
-
 	virtual void Display() =0;
 };
 
@@ -36,19 +34,18 @@ public:
 class savingsAccount : public bankAccount
 {
 public:
-	savingsAccount(int a, float i, float b) : bankAccount(a, i, b)
-
-	{
+	savingsAccount(int a, float i, float b) : bankAccount(a,i, b)
+		{
 
 		//Caculate intreset rates savings
 		if (balance <= 10000)
 		{
-			interestRate = .1 / MAXMONTHS;
+			interestRate = .01 / MAXMONTHS;
 			balance = balance + balance * interestRate;
 		}
 		if (balance >= 10000)
 		{
-			interestRate = .2 / MAXMONTHS;
+			interestRate = .02 / MAXMONTHS;
 			balance = balance + balance * interestRate;
 		}
 	}
@@ -81,11 +78,19 @@ public:
 	void Display()
 	{
 		cout << "Savings Account Number: " << accountNumber << endl;
-		
-		/*cout << "Interest Rate: " << interestRate << endl;*/
 		cout << "Savings Account Bal: " << balance << endl;
 	}
+
+	friend ostream& operator<<(ostream &os, savingsAccount &interest);
+
+	
+
 };
+ostream& operator <<(ostream &os, savingsAccount &interest)
+{
+	os << "Interest Rate " << interest.interestRate << endl;
+	return os;
+}
 
 
 //Checcking Class with Inheritance from account
@@ -186,8 +191,12 @@ int main()
 		
 		bankAccount **acc = new bankAccount*[nBankAccounts];
 		acc[0] = new savingsAccount(100,0, 10000); //Open Savings
-		acc[0]->Display();									//Display Savings
-		//
+		acc[0]->Display();
+	
+		
+
+
+		
 		//acc[1] = new checkingAccount(200, 0, 600, 600,0); //Open Checking
 		//acc[1]->Display();								//Display Checking
 
