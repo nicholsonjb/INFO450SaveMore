@@ -81,17 +81,11 @@ public:
 		cout << "Savings Account Bal: " << balance << endl;
 	}
 
-	friend ostream& operator<<(ostream &os, savingsAccount &interest);
+
 
 	
 
 };
-ostream& operator <<(ostream &os, savingsAccount &interest)
-{
-	os << "Interest Rate " << interest.interestRate << endl;
-	return os;
-}
-
 
 //Checcking Class with Inheritance from account
 //class checkingAccount : public bankAccount
