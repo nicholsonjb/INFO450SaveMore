@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include <iostream>
+#include <cmath>
 using namespace std;
 
 const int MAXMONTHS = 12;
@@ -22,10 +23,11 @@ public:
 		balance = b;
 	}
 
-//Method Bank Account withdraw
+//Method Bank Account
 	virtual int withdraw(float wAmount)=0;
 	virtual float deposit(float dAmount) =0;
 	virtual float getBalance() = 0;
+	virtual float calculateIntrest() = 0;
 	virtual void Display() =0;
 };
 
@@ -35,20 +37,7 @@ class savingsAccount : public bankAccount
 {
 public:
 	savingsAccount(int a, float i, float b) : bankAccount(a,i, b)
-		{
-
-		//Caculate intreset rates savings
-		if (balance <= 10000)
-		{
-			interestRate = .01 / MAXMONTHS;
-			balance = balance + balance * interestRate;
-		}
-		if (balance >= 10000)
-		{
-			interestRate = .02 / MAXMONTHS;
-			balance = balance + balance * interestRate;
-		}
-	}
+	{}
 	//Method Savings Accouunt withdraw
 	int withdraw(float wAmount)
 	{
@@ -64,16 +53,32 @@ public:
 	//Method Savings Account Deposit
 	float deposit(float dAmount)
 	{
-		balance = balance + dAmount;
+		
+		balance  = balance + dAmount;
 		return balance;
+		
 	}
 
 	//Get Balance for Saving
 	float getBalance()
 	{
 		return balance;
-	};
-
+	}
+	//monthly intrest for savings
+	float calculateIntrest()
+	{
+		if (balance < 10000)
+		{
+			balance = balance*pow((1 + .01 / 12), 12);
+			return balance;
+		}
+		if (balance >= 10000)
+		{
+			balance = balance*pow((1 + .02 / 12), 12);
+			return balance;
+		}
+		;
+	}
 	//Display Savings Account
 	void Display()
 	{
@@ -81,9 +86,6 @@ public:
 		cout << "Savings Account Bal: " << balance << endl;
 	}
 
-
-
-	
 
 };
 
@@ -184,8 +186,20 @@ int main()
 	
 		
 		bankAccount **acc = new bankAccount*[nBankAccounts];
-		acc[0] = new savingsAccount(100,0, 10000); //Open Savings
+		acc[0] = new savingsAccount(100,0,0); //Open Savings
+		
+	//Savings Account
+		acc[0]->deposit(10000);
 		acc[0]->Display();
+
+	//Savings Intresest
+		acc[0]->calculateIntrest();
+		acc[0]->Display();
+	
+	//Savings Withdraw
+		acc[0]->withdraw(1000);
+		acc[0]->Display();
+
 	
 		
 
