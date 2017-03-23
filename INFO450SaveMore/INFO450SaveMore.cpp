@@ -28,6 +28,7 @@ public:
 	virtual float deposit(float dAmount) =0;
 	virtual float getBalance() = 0;
 	virtual float calculateIntrest() = 0;
+		void orderChecks();
 	virtual void Display() =0;
 };
 
@@ -90,48 +91,65 @@ public:
 };
 
 //Checcking Class with Inheritance from account
-//class checkingAccount : public bankAccount
-//{
-//	int order = 15;
-//
-//
-//public:
-//
-//	checkingAccount(int a, float i, float b, float amt, int o) : bankAccount(a, i, b, amt)
-//	{
-//		//If Checking account Balance below 500
-//		if (balance <= 500)
-//		{
-//			balance = balance - 5;
-//		}
-//	}
-//
-//	//Method order checks
-//	void orderChecks()
-//	{
-//		balance = balance - order;
-//	}
-//	
-//	//Method Checking Account Withdraw
-//	void withdraw(float amount)
-//	{
-//		balance = ((balance - 2) - amount);
-//	}
-//
-//	//Get Balance for Checking
-//	float getBalance()
-//	{
-//		return balance;
-//	};
-//
-//	//Display Checking Account Information
-//	void Display()
-//	{
-//		cout << "\nChecking Account Number: " << accountNumber << endl;
-//		cout << "Interest Rate: " << interestRate << endl;
-//		cout << "Checking Account Bal: " << balance << endl;
-//	}
-//};
+class checkingAccount : public bankAccount
+{
+
+
+
+public:
+
+	checkingAccount(int a, float i, float b) : bankAccount(a, i, b){}
+	
+	//Method checking Accouunt withdraw
+	int withdraw(float wAmount)
+	{
+		if (balance - wAmount >= 0)
+		{
+			balance = balance - wAmount;
+			return 0;
+		}
+		 if (balance > 500)
+		 {
+			 balance = balance - 5;
+			 return 0;
+		 }
+		else
+			return -1;
+	}
+
+	//Method checking Account Deposit
+	float deposit(float dAmount)
+	{
+
+		balance = balance + dAmount;
+		return balance;
+
+	}
+
+	//Get Balance for Saving
+	float getBalance()
+	{
+		return balance;
+	}
+
+	void orderChecks()
+	{
+		balance = balance - 15;
+	}
+	//monthly intrest for checking
+	float calculateIntrest()
+	{
+		return 0;
+	}
+	//Display checking Account
+	void Display()
+	{
+		cout << "Checking Account Number: " << accountNumber << endl;
+		cout << "Checking Account Bal: " << balance << endl;
+	}
+
+};
+
 //
 ////CD Class with Inheritance from account
 //class certificateofDeposit : public bankAccount
@@ -187,18 +205,27 @@ int main()
 		
 		bankAccount **acc = new bankAccount*[nBankAccounts];
 		acc[0] = new savingsAccount(100,0,0); //Open Savings
+		acc[1] = new checkingAccount(101, 0, 0); //Open Checking
 		
-	//Savings Account
+	//Savings Account Deposit
 		acc[0]->deposit(10000);
+		
+
+	//Checking account deposit
+		acc[1]->deposit(600);
+
+		//displacy savings, checking, cd
 		acc[0]->Display();
+		acc[1]->Display();
 
 	//Savings Intresest
+		cout << "\n---------\n" << endl;
 		acc[0]->calculateIntrest();
 		acc[0]->Display();
 	
 	//Savings Withdraw
-		acc[0]->withdraw(1000);
-		acc[0]->Display();
+		/*acc[0]->withdraw(1000)*/;
+		
 
 	
 		
@@ -214,7 +241,7 @@ int main()
 
 
 		delete acc[0];
-		//delete acc[1];
+		delete acc[1];
 		//delete acc[2];
 		//delete[] acc;
 
