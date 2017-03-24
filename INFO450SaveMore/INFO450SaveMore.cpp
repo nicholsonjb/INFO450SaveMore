@@ -106,12 +106,13 @@ public:
 		if (balance - wAmount >= 0)
 		{
 			balance = balance - wAmount;
-			return 0;
+			
+			
 		}
-		 if (balance > 500)
+		if (balance < 500)
 		 {
-			 balance = balance - 5;
-			 return 0;
+			balance = (balance - 5);
+			 
 		 }
 		else
 			return -1;
@@ -164,18 +165,15 @@ public:
 	{
 		if (balance - wAmount >= 0)
 		{
-			balance = balance  - wAmount;
+			balance = (balance *(1 + .1)) - wAmount;
 			return 0;
 		}
-		if (term >= term )
-		{
-			balance = (balance *(1+.1)) - wAmount;
-		}
+	
 		else
 			return -1;
 	}
 
-	//Method Savings Account Deposit
+	//Method CD Account Deposit
 	float deposit(float dAmount)
 	{
 
@@ -184,13 +182,13 @@ public:
 
 	}
 
-	//Get Balance for Saving
+	//Get Balance for CD
 	float getBalance()
 	{
 		return balance;
 	}
 
-	//monthly intrest for savings
+	//monthly intrest for CD
 	float calculateIntrest()
 	{
 		if (term < 5)
@@ -205,7 +203,7 @@ public:
 		}
 		
 	}
-	//Display Savings Account
+	//Display  CD Account
 	void Display()
 	{
 		cout << "CD Account Number: " << accountNumber << endl;
@@ -224,23 +222,37 @@ int main()
 		acc[1] = new checkingAccount(101, 0, 0); //Open Checking
 		
 	//Savings Account Deposit
+		
 		acc[0]->deposit(10000);
 		
-
+		
 	//Checking account deposit
 		acc[1]->deposit(600);
 
 		//displacy savings, checking, cd
+		cout << "Deposit Savings" << endl;
 		acc[0]->Display();
+		cout << "\n---------\n" << endl;
+		cout << "Deposit Checking" << endl;
 		acc[1]->Display();
 
 	//Savings Intresest
 		cout << "\n---------\n" << endl;
+		cout << "Savings Intrest" << endl;
 		acc[0]->calculateIntrest();
 		acc[0]->Display();
 	
 	//Savings Withdraw
-		/*acc[0]->withdraw(1000)*/;
+
+		cout << "\n---------\n" << endl;
+		cout << "Withdraw Savings" << endl;
+		acc[0]->withdraw(1000);
+		acc[0]->Display();
+
+		cout << "\n---------\n" << endl;
+		cout << "Withdraw Checking" << endl;
+		acc[1]->withdraw(200);
+		acc[1]->Display();
 		
 
 	
@@ -248,8 +260,7 @@ int main()
 
 
 		
-		//acc[1] = new checkingAccount(200, 0, 600, 600,0); //Open Checking
-		//acc[1]->Display();								//Display Checking
+
 
 		//acc[2] = new certificateofDeposit(300, 0, 10000, 10000, 3); //Open CD
 		//acc[2]->Display();											//Display CD
