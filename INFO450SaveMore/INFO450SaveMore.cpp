@@ -46,6 +46,7 @@ public:
 	{
 		if (balance - wAmount >= 0)
 		{
+			
 			balance = (balance - 2) - wAmount;
 			return 0;
 		}
@@ -56,6 +57,7 @@ public:
 	//Method Savings Account Deposit
 	float deposit(float dAmount)
 	{
+		interestRate = 0;
 		balance = balance + dAmount;
 		return balance;
 	}
@@ -71,13 +73,15 @@ public:
 	{
 		if (balance < 10000)
 		{
-			balance = balance * pow((1 + .01 / 12), 12);
-			return balance;
+			interestRate = pow((1 + .01 / 12), 12);
+			balance = balance *interestRate;
+			return interestRate;
 		}
 		if (balance >= 10000)
 		{
-			balance = balance * pow((1 + .02 / 12), 12);
-			return balance;
+			interestRate = pow((1 + .02 / 12), 12);
+			balance = balance * interestRate;
+			return interestRate;
 		};
 	}
 
@@ -91,6 +95,7 @@ public:
 	void Display()
 	{
 		cout << "Savings Account Number: " << accountNumber << endl;
+		cout << "Savings Account Interest: " << interestRate << endl;
 		cout << "Savings Account Bal: " << balance;
 	}
 };
@@ -102,6 +107,7 @@ public:
 
 	checkingAccount(int a, float i, float b) : bankAccount(a, i, b)
 	{
+		interestRate = 0;
 	}
 
 	//Method checking Accouunt withdraw
@@ -109,10 +115,12 @@ public:
 	{
 		if (balance - wAmount >= 0)
 		{
+			
 			balance = balance - wAmount;
 		}
 		if (balance < 500)
 		{
+			
 			balance = (balance - 5);
 		}
 		else
@@ -126,7 +134,7 @@ public:
 		return balance;
 	}
 
-	//Get Balance for Saving
+	//Get Balance for Checking
 	float getBalance()
 	{
 		return balance;
@@ -141,13 +149,14 @@ public:
 	//monthly intrest for checking
 	float calculateIntrest()
 	{
-		return 0;
+		return interestRate;
 	}
 
 	//Display checking Account
 	void Display()
 	{
 		cout << "Checking Account Number: " << accountNumber << endl;
+		cout << "Checking Interest Rate: " << interestRate << endl;
 		cout << "Checking Account Bal: " << balance;
 	}
 };
@@ -170,6 +179,7 @@ public:
 	{
 		if (balance - wAmount >= 0)
 		{
+			interestRate = 0;
 			balance = (balance - (balance * .1)) - wAmount;
 			return 0;
 		}
@@ -181,6 +191,7 @@ public:
 	//Method CD Account Deposit
 	float deposit(float dAmount)
 	{
+		interestRate = 0;
 		balance = balance + dAmount;
 		return balance;
 	}
@@ -196,13 +207,15 @@ public:
 	{
 		if (term < 5)
 		{
-			balance = balance * pow((1 + .1 / 12), 12);
-			return balance;
+			interestRate = pow((1 + .1 / 12), 12);
+			balance = balance * interestRate;
+			return interestRate;
 		}
 		if (term >= 5)
 		{
-			balance = balance * pow((1 + .5 / 12), 12);
-			return balance;
+			interestRate = pow((1 + .1 / 12), 12);
+			balance = balance *interestRate;
+			return interestRate;
 		}
 	}
 
@@ -215,6 +228,7 @@ public:
 	void Display()
 	{
 		cout << "CD Account Number: " << accountNumber << endl;
+		cout << "CD Interest Rate: " << interestRate << endl;
 		cout << "CD Account Bal: " << balance;
 	}
 };
@@ -243,13 +257,13 @@ int main()
 	acc[2]->deposit(10000);
 
 	//displacy savings, checking, cd
-	cout << "Deposit Savings:" << endl;
+	cout << "Deposit New Savings:" << endl;
 	acc[0]->Display();
 	cout << "\n" << endl;
-	cout << "Deposit Checking:" << endl;
+	cout << "Deposit New Checking:" << endl;
 	acc[1]->Display();
 	cout << "\n" << endl;
-	cout << "Deposit CD:" << endl;
+	cout << "Deposit New CD:" << endl;
 	acc[2]->Display();
 
 	//Savings Intresest
