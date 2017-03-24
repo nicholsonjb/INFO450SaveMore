@@ -28,7 +28,7 @@ public:
 	virtual float deposit(float dAmount) =0;
 	virtual float getBalance() = 0;
 	virtual float calculateIntrest() = 0;
-		void orderChecks();
+	virtual float orderChecks()=0;
 	virtual void Display() =0;
 };
 
@@ -80,11 +80,18 @@ public:
 		}
 		;
 	}
+
+	//order checks
+	float orderChecks()
+	{
+		return 0;
+	}
+
 	//Display Savings Account
 	void Display()
 	{
 		cout << "Savings Account Number: " << accountNumber << endl;
-		cout << "Savings Account Bal: " << balance << endl;
+		cout << "Savings Account Bal: " << balance;
 	}
 
 
@@ -93,8 +100,6 @@ public:
 //Checcking Class with Inheritance from account
 class checkingAccount : public bankAccount
 {
-
-
 
 public:
 
@@ -133,9 +138,10 @@ public:
 		return balance;
 	}
 
-	void orderChecks()
+	float orderChecks()
 	{
 		balance = balance - 15;
+		return balance;
 	}
 	//monthly intrest for checking
 	float calculateIntrest()
@@ -146,7 +152,7 @@ public:
 	void Display()
 	{
 		cout << "Checking Account Number: " << accountNumber << endl;
-		cout << "Checking Account Bal: " << balance << endl;
+		cout << "Checking Account Bal: " << balance;
 	}
 
 };
@@ -203,11 +209,14 @@ public:
 		}
 		
 	}
+
+	float orderChecks();
+
 	//Display  CD Account
 	void Display()
 	{
 		cout << "CD Account Number: " << accountNumber << endl;
-		cout << "CD Account Bal: " << balance << endl;
+		cout << "CD Account Bal: " << balance;
 	}
 };
 
@@ -232,24 +241,29 @@ int main()
 		//displacy savings, checking, cd
 		cout << "Deposit Savings" << endl;
 		acc[0]->Display();
-		cout << "\n---------\n" << endl;
+		cout << "\n" << endl;
 		cout << "Deposit Checking" << endl;
 		acc[1]->Display();
 
 	//Savings Intresest
-		cout << "\n---------\n" << endl;
+		cout << "\n\n---------\n";
 		cout << "Savings Intrest" << endl;
 		acc[0]->calculateIntrest();
 		acc[0]->Display();
 	
-	//Savings Withdraw
-
+		//Order checks
 		cout << "\n---------\n" << endl;
+		cout << "Order Checks" << endl;
+		acc[1]->orderChecks();
+		acc[1]->Display();
+
+	//Savings Withdraw
+		cout << "\n\n---------\n" << endl;
 		cout << "Withdraw Savings" << endl;
 		acc[0]->withdraw(1000);
 		acc[0]->Display();
-
-		cout << "\n---------\n" << endl;
+		//Saving Checking
+		cout << "\n" << endl;
 		cout << "Withdraw Checking" << endl;
 		acc[1]->withdraw(200);
 		acc[1]->Display();
@@ -270,7 +284,7 @@ int main()
 		delete acc[0];
 		delete acc[1];
 		//delete acc[2];
-		//delete[] acc;
+		delete[] acc;
 
 	return 0;
 }
