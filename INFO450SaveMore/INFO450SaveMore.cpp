@@ -15,8 +15,7 @@ protected:
 	int accountNumber;
 	float interestRate;
 	float balance;
-	std:
-
+	
 public:
 	bankAccount(int a, float i, float b)
 	{
