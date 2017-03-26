@@ -8,6 +8,8 @@
 #include <iostream>
 #include <cmath>
 #include <string>
+#include <iterator>
+#include <ctime>
 
 using namespace std;
 
@@ -20,13 +22,16 @@ protected:
 	int accountNumber;
 	float interestRate;
 	float balance;
+	int openDate;
 	
 public:
-	bankAccount(int a, float i, float b)
+	bankAccount(int a, float i, float b, int d)
 	{
 		accountNumber = a;
-		int
+		interestRate = i;
 		balance = b;
+		openDate = d;
+			
 	}
 
 	//Method Bank Account
@@ -35,8 +40,7 @@ public:
 	virtual float getBalance() = 0;
 	virtual float calculateIntrest() = 0;
 	virtual float orderChecks() = 0;
-	virtual void Display() = 0;
-	
+	virtual void Display() = 0;	
 	
 };
 
@@ -254,7 +258,7 @@ int main()
 	acc[1] = new checkingAccount(101, 0, 0); //Open Checking
 	acc[2] = new certificateofDeposit(102, 0, 0, 3); //Open CD
 
-													 //Savings Account Deposit
+	 //Savings Account Deposit
 
 	acc[0]->deposit(10000);
 
