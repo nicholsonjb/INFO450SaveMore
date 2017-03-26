@@ -7,6 +7,8 @@
 #include "stdafx.h"
 #include <iostream>
 #include <cmath>
+#include <string>
+
 using namespace std;
 
 const int MAXMONTHS = 12;
@@ -18,7 +20,7 @@ protected:
 	int accountNumber;
 	float interestRate;
 	float balance;
-
+	
 public:
 	bankAccount(int a, float i, float b)
 	{
@@ -33,6 +35,8 @@ public:
 	virtual float calculateIntrest() = 0;
 	virtual float orderChecks() = 0;
 	virtual void Display() = 0;
+	
+	
 };
 
 
