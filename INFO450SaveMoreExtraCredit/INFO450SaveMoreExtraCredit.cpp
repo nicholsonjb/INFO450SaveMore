@@ -25,6 +25,7 @@ public:
 	bankAccount(int a, float i, float b)
 	{
 		accountNumber = a;
+		int
 		balance = b;
 	}
 

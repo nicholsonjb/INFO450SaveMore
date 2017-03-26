@@ -20,6 +20,7 @@ public:
 	bankAccount(int a, float i, float b)
 	{
 		accountNumber = a;
+		interestRate = i;
 		balance = b;
 	}
 
