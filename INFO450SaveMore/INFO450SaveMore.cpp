@@ -15,7 +15,7 @@ protected:
 	int accountNumber;
 	float interestRate;
 	float balance;
-	
+
 public:
 	bankAccount(int a, float i, float b)
 	{
@@ -47,7 +47,6 @@ public:
 	{
 		if (balance - wAmount >= 0)
 		{
-			
 			balance = (balance - 2) - wAmount;
 			return 0;
 		}
@@ -75,7 +74,7 @@ public:
 		if (balance < 10000)
 		{
 			interestRate = pow((1 + .01 / 12), 12);
-			balance = balance *interestRate;
+			balance = balance * interestRate;
 			return interestRate;
 		}
 		if (balance >= 10000)
@@ -116,13 +115,10 @@ public:
 	{
 		if (balance - wAmount >= 0)
 		{
-			
 			balance = balance - wAmount;
-			
 		}
 		if (balance < 500)
 		{
-			
 			balance = (balance - 5);
 		}
 		else
@@ -181,7 +177,6 @@ public:
 	{
 		if (balance - wAmount >= 0)
 		{
-			
 			balance = (balance - (balance * .1)) - wAmount;
 			return 0;
 		}
@@ -216,7 +211,7 @@ public:
 		if (term >= 5)
 		{
 			interestRate = pow((1 + .1 / 12), 12);
-			balance = balance *interestRate;
+			balance = balance * interestRate;
 			return interestRate;
 		}
 	}
@@ -241,7 +236,7 @@ int main()
 	int nBankAccounts = 10;
 
 	//allocate memory for bankaccount
-	bankAccount** acc = new bankAccount*[nBankAccounts]; 
+	bankAccount** acc = new bankAccount*[nBankAccounts];
 
 	acc[0] = new savingsAccount(100, 0, 0); //Open Savings
 	acc[1] = new checkingAccount(101, 0, 0); //Open Checking

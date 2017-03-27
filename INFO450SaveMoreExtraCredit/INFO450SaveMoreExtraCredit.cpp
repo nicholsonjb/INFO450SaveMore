@@ -23,15 +23,15 @@ protected:
 	int accountNumber;
 	float interestRate;
 	float balance;
-	time_t openDate = 0;
+	/*time_t openDate = 0*/;
 	
 public:
-	bankAccount(int a, float i, float b, int d)
+	bankAccount(int a, float i, float b)
 	{
 		accountNumber = a;
 		interestRate = i;
 		balance = b;
-		openDate = d;
+		/*openDate = d;*/
 	
 	
 			
