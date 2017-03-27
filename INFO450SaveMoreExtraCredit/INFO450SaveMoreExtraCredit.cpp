@@ -8,8 +8,9 @@
 #include <iostream>
 #include <cmath>
 #include <string>
-#include <iterator>
+#include <time.h>
 #include <ctime>
+#include <chrono>
 
 using namespace std;
 
@@ -22,7 +23,7 @@ protected:
 	int accountNumber;
 	float interestRate;
 	float balance;
-	int openDate;
+	time_t openDate = 0;
 	
 public:
 	bankAccount(int a, float i, float b, int d)
@@ -31,6 +32,8 @@ public:
 		interestRate = i;
 		balance = b;
 		openDate = d;
+	
+	
 			
 	}
 
