@@ -181,7 +181,7 @@ public:
 	{
 		if (balance - wAmount >= 0)
 		{
-			interestRate = 0;
+			
 			balance = (balance - (balance * .1)) - wAmount;
 			return 0;
 		}
