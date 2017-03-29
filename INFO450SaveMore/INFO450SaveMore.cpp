@@ -1,5 +1,12 @@
 // INFO450SaveMore.cpp : Defines the entry point for the console application.
 //
+//Author: James Nicholson
+//Spring 2017
+//Purpose: Save - More is a small community bank that offers its customers 3 types of 
+//Bank Accounts – an interest bearing savings account, a checking account and a certificate 
+//of deposit.All Bank accounts have an Account Number, an Interest rate and a Balance – and 
+//have the ability to withdraw funds, deposit funds and  display the account’s attributes.
+//Polymorphism must be demonstrated with the creation of the bank accounts
 
 #include "stdafx.h"
 #include <iostream>
