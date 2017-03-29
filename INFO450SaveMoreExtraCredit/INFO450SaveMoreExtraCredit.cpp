@@ -73,8 +73,13 @@ public:
 	float deposit(float dAmount)
 	{
 		interestRate = 0;
-		balance = balance + dAmount;
-		return balance;
+		if (dAmount >= 0)
+		{
+			balance = balance + dAmount;
+			return 0;
+		}
+		else
+			return -1;
 	}
 
 	//Get Balance for Saving
@@ -146,8 +151,14 @@ public:
 	//Method checking Account Deposit
 	float deposit(float dAmount)
 	{
-		balance = balance + dAmount;
-		return balance;
+		interestRate = 0;
+		if (dAmount >= 0)
+		{
+			balance = balance + dAmount;
+			return 0;
+		}
+		else
+			return -1;
 	}
 
 	//Get Balance for Checking
@@ -208,8 +219,13 @@ public:
 	float deposit(float dAmount)
 	{
 		interestRate = 0;
-		balance = balance + dAmount;
-		return balance;
+		if (dAmount >= 0)
+		{
+			balance = balance + dAmount;
+			return 0;
+		}
+		else
+			return -1;
 	}
 
 	//Get Balance for CD
