@@ -85,13 +85,13 @@ public:
 	{
 		if (balance < 10000)
 		{
-			interestRate = pow((1 + .01 / 12), 12);
+			interestRate = (1 + .01 / 12);
 			balance = balance * interestRate;
 			return interestRate;
 		}
 		if (balance >= 10000)
 		{
-			interestRate = pow((1 + .02 / 12), 12);
+			interestRate = (1 + .02 / 12);
 			balance = balance * interestRate;
 			return interestRate;
 		};
@@ -226,13 +226,13 @@ public:
 	{
 		if (term < 5)
 		{
-			interestRate = pow((1 + .1 / 12), 12);
+			interestRate = (1 + .1 / 12);
 			balance = balance * interestRate;
 			return interestRate;
 		}
 		if (term >= 5)
 		{
-			interestRate = pow((1 + .1 / 12), 12);
+			interestRate = (1 + .1 / 12);
 			balance = balance * interestRate;
 			return interestRate;
 		}
