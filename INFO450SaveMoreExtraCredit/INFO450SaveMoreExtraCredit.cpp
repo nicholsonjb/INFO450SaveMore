@@ -1,3 +1,4 @@
+
 // INFO450SaveMoreExtraCredit.cpp : Defines the entry point for the console application.
 //
 
@@ -20,6 +21,9 @@
 #include <ctime>
 #include <chrono>
 
+#define _CRT_SECURE_NO_WARNINGS
+
+
 using namespace std;
 
 const int MAXMONTHS = 12;
@@ -31,18 +35,28 @@ protected:
 	int accountNumber;
 	float interestRate;
 	float balance;
-	/*time_t openDate = 0*/;
+	int OpenDate;
+	time_t t;
+	struct  tm*timeinfo;
+	int Day;
+	int Month;
+	int Year;
+
 	
 public:
-	bankAccount(int a, float i, float b)
+	bankAccount(int a, float i, float b, int d, int m, int y)
 	{
 		accountNumber = a;
 		interestRate = i;
 		balance = b;
-		/*openDate = d;*/
-	
-	
-			
+		t = time(0);
+		timeinfo = localtime(&t);
+		Day = timeinfo->tm_mday;
+		Month = timeinfo->tm_mon + 1;
+		Year = timeinfo->tm_year + 1900;
+		Day = d;
+		Month = m;
+		Year = y;			
 	}
 
 	//Method Bank Account
@@ -60,7 +74,7 @@ public:
 class savingsAccount : public bankAccount
 {
 public:
-	savingsAccount(int a, float i, float b) : bankAccount(a, i, b)
+	savingsAccount(int a, float i, float b, int d, int m, int y) : bankAccount(a, i, b, d,m,y)
 	{
 	}
 
@@ -133,7 +147,7 @@ class checkingAccount : public bankAccount
 {
 public:
 
-	checkingAccount(int a, float i, float b) : bankAccount(a, i, b)
+	checkingAccount(int a, float i, float b, int d, int m, int y) : bankAccount(a, i, b, d, m, y)
 	{
 		interestRate = 0;
 	}
@@ -202,7 +216,7 @@ class certificateofDeposit : public bankAccount
 {
 	int term;
 public:
-	certificateofDeposit(int a, float i, float b, int t) : bankAccount(a, i, b)
+	certificateofDeposit(int a, float i, float b, int d, int m, int y, int t) : bankAccount(a, i, b, d, m, y)
 
 	{
 		term = t;
@@ -281,9 +295,9 @@ int main()
 	//allocate memory for bankaccount
 	bankAccount** acc = new bankAccount*[nBankAccounts];
 
-	acc[0] = new savingsAccount(100, 0, 0); //Open Savings
-	acc[1] = new checkingAccount(101, 0, 0); //Open Checking
-	acc[2] = new certificateofDeposit(102, 0, 0, 3); //Open CD
+	acc[0] = new savingsAccount(100,0,0,0,0,0); //Open Savings
+	acc[1] = new checkingAccount(101, 0, 0,0,0,0); //Open Checking
+	acc[2] = new certificateofDeposit(102, 0, 0, 3,0,0,0); //Open CD
 
 	 //Savings Account Deposit
 
